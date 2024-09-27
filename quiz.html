@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Quiz</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            text-align: center;
+            padding: 50px;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #ff7e5f;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #feb47b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mini Quiz About Us</h1>
+    <div id="quiz">
+        <div class="question">
+            <p>1. When is my birthday? (Just kidding ;) ) Would you like me to kiss you first or cuddle?</p>
+            <button class="button" onclick="nextQuestion(1, 'kiss')">A) Kiss</button>
+            <button class="button" onclick="nextQuestion(1, 'cuddle')">B) Cuddle</button>
+        </div>
+        <div class="question" style="display:none;">
+            <p>2. Would you like to have a tight hug or love making (you can only choose one ;) )?</p>
+            <button class="button" onclick="nextQuestion(2, 'tight hug')">A) Tight Hug</button>
+            <button class="button" onclick="nextQuestion(2, 'love making')">B) Love Making</button>
+        </div>
+        <div class="question" style="display:none;">
+            <p>3. Nishita loves you infinitely... how much do you love her?</p>
+            <button class="button" onclick="nextQuestion(3, 'infinite')">A) Infinite</button>
+            <button class="button" onclick="nextQuestion(3, 'finite')">B) Finite Love :|</button>
+            <button class="button" onclick="nextQuestion(3, 'cant express')">C) Can't express in words :)</button>
+        </div>
+        <button class="button" style="display:none;" id="finishQuiz" onclick="finishQuiz()">Finish Quiz</button>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+
+        function nextQuestion(questionIndex, answer) {
+            const questions = document.querySelectorAll('.question');
+            questions[questionIndex - 1].style.display = 'none';
+            if (questionIndex < questions.length) {
+                questions[questionIndex].style.display = 'block';
+            } else {
+                document.getElementById('finishQuiz').style.display = 'block';
+            }
+            displayMessage(questionIndex, answer);
+        }
+
+        function displayMessage(questionIndex, answer) {
+            const messages = {
+                1: {
+                    kiss: "A kiss it is! Can't wait to shower you with kisses!",
+                    cuddle: "Cuddles it is! Let's snuggle up and get cozy!"
+                },
+                2: {
+                    'tight hug': "A tight hug coming your way! Feel my love wrapped around you.",
+                    'love making': "Love making it is! Let's make some beautiful memories together."
+                },
+                3: {
+                    infinite: "Infinite love it is! Our love knows no bounds.",
+                    finite: "Finite love? Just kidding, I know you love me infinitely!",
+                    'cant express': "Can't express in words? That's the sweetest thing ever!"
+                }
+            };
+            alert(messages[questionIndex][answer]);
+        }
+
+        function finishQuiz() {
+            window.location.href = 'numbers.html';
+        }
+    </script>
+</body>
+</html>

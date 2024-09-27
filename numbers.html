@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Number</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            text-align: center;
+            padding: 50px;
+            color: #333;
+        }
+        .number {
+            display: inline-block;
+            margin: 10px;
+            padding: 20px;
+            font-size: 24px;
+            background-color: #ff7e5f;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .number:hover {
+            background-color: #feb47b;
+            transform: scale(1.1);
+        }
+        .secret {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Click a Number to Reveal the Secret Message</h1>
+    <div id="numbers"></div>
+    <div id="secret" class="secret"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script>
+        const secrets = [
+            "You are the most caring person I know.",
+            "Your smile makes my day brighter.",
+            "You are incredibly smart and talented.",
+            "I love how you always support me.",
+            "You are my rock and my best friend.",
+            "Your kindness is unmatched.",
+            "You make every moment special.",
+            "I admire your strength and courage.",
+            "You are my sunshine on a cloudy day.",
+            "Your love is my greatest treasure.",
+            "You are my dream come true.",
+            "I am so proud of you.",
+            "You have a heart of gold.",
+            "You are my everything.",
+            "I love your sense of humor.",
+            "You are my forever love.",
+            "You inspire me every day.",
+            "You are my greatest adventure.",
+            "I cherish every moment with you.",
+            "You are my one and only."
+        ];
+
+        function displayNumbers() {
+            const numbersDiv = document.getElementById('numbers');
+            for (let i = 1; i <= 20; i++) {
+                const numberDiv = document.createElement('div');
+                numberDiv.className = 'number';
+                numberDiv.innerText = i;
+                numberDiv.onclick = () => displaySecret(i);
+                numbersDiv.appendChild(numberDiv);
+            }
+        }
+
+        function displaySecret(index) {
+            const secretDiv = document.getElementById('secret');
+            secretDiv.innerText = secrets[index - 1];
+            confetti();
+        }
+
+        function confetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        window.onload = displayNumbers;
+    </script>
+</body>
+</html>
